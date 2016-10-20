@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-xs-6">
+		<h4>The MEAN Discussion board</h4>
+		<p>Welcome {{currentUser.name}}</p>
+	</div>
+	<div class="col-xs-6" style="text-align: right;">
+		<a href="/logout">Logout</a>
+	</div>
+</div>
+
+
+<hr class="style17">
+<div class="text-right">
+		<input type="text" ng-model="query" placeholder="Search..."> 
+		<br><br>
+	</div>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Topic</th>
+			<th>User</th>
+			<th>Post</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="topic in topics">
+			<td>{{topic.category}}</td>
+			<td><a href="#/topics/{{topic._id}}">{{topic.topicname}}</td>
+			<td><a href="#/users/{{topic._user}}">{{topic.username}}</td>
+			<td>{{topic.posts}}</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<hr class="style17">
+<h4>Add a new topic:</h4>
+
+<form ng-submit="newTopic()">
+	Topic Name:<input type="text" class="form-control" ng-model="newTop.topicname">
+	Description: <textarea rows="3" cols="3" class="form-control" ng-model="newTop.description"></textarea>
+	Category: <select class="form-control" ng-model="newTop.category">
+		<option>HTML</option>
+		<option>Javascript</option>
+	</select>
+	<br>
+	<input type="submit" class="btn btn-sm btn-success" value="Add Topic">
+</form>
