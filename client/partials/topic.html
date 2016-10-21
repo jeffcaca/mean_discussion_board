@@ -14,26 +14,28 @@
 
 
 
-	<div ng-repeat="post in posts" style="background-color: lightblue; border: 2px solid black; margin-bottom: 20px; border-radius: 50px 0px 50px 0px; padding: 15px;">
+	<div ng-repeat="post in posts | orderBy:sortType:sortReverse" style="background-color: lightblue; border: 2px solid black; margin-bottom: 20px; border-radius: 50px 0px 50px 0px; padding: 15px;">
 		<div class="row">
 			<div class="col-xs-6">
-	<P><a href="#/users/{{post._user}}">{{post.username}}</a> said: {{post.description}}</p> 
+			<p>{{post.date | date: 'MMMM, dd, yyyy - h:ma'}}</p>
+	<P><a href="#/users/{{post._user}}">{{post.username}}</a> said: {{post.description}}</p>  
 			</div>
 			<div class="col-xs-6" style="text-align: right;">
 	<a href ng-click="upVote(post._id)"><img src="./../assets/images/thumbsup.png"></a> {{post.upvote}} <a href ng-click="downVote(post._id)"><img src="./../assets/images/thumbsdown.png"></a> {{post.downvote}}
 			</div>
 		</div>
 
-	<form ng-submit="newComment(post._id)">
-		<input type="text" class="form-control" ng-model="newComm[post._id].description">
-		<br>
-		<input type="submit" class="btn btn-sm btn-danger" value="Comment">
-	</form>
+			<hr class="style17">
 			<div ng-repeat="comment in post._comments">
-				<a href="/#/users/{{comment._user}}">{{comment.name}}</a>: {{comment.description}}
+				<p>{{comment.date | date: 'MMMM, dd, yyyy - h:ma'}}
+			<p>	<a href="/#/users/{{comment._user}}">{{comment.name}}</a>: {{comment.description}}</p>
 					
 					<hr class="style17">
 			</div>
-			
+			<form ng-submit="newComment(post._id)">
+				<input type="text" class="form-control" ng-model="newComm[post._id].description">
+				<br>
+				<input type="submit" class="btn btn-sm btn-danger" value="Comment">
+			</form>
 	</div>
 

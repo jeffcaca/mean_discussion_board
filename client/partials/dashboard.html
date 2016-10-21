@@ -24,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="topic in topics">
+		<tr ng-repeat="topic in topics | filter: query">
 			<td>{{topic.category}}</td>
 			<td><a href="#/topics/{{topic._id}}">{{topic.topicname}}</td>
 			<td><a href="#/users/{{topic._user}}">{{topic.username}}</td>

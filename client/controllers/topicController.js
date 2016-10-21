@@ -1,5 +1,9 @@
 app.controller('topicController', ['$scope', 'userFactory','topicFactory', "$location", "$routeParams", 'postFactory', function($scope, userFactory, topicFactory, $location, $routeParams, postFactory){
 	
+
+ 	$scope.sortType = "date";
+    $scope.sortReverse = true;
+
 	// Creates a new post. 
 
 	$scope.newPost = function(){
